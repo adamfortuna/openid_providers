@@ -1,0 +1,42 @@
+h1. About
+
+Not all OpenID providers support lightweight profile exchange, the mechanism 
+that makes requesting useful information like usernames and email
+addresses possible. If username isn't provided, you might want to take a 
+guess at username based on their provider.
+
+This of course won't work for all OpenID URLs. Ideally you'll want anything
+generated from this to be just a suggestion that they can change after that.
+
+This was added as a way of getting usernames after logging in using the 
+OpenID-Selector Javascript ( http://code.google.com/p/openid-selector/ ).
+
+Feel free to use and alter.
+
+
+h2. Sites it will work on
+
+This should work on any OpenID provider that has a username like string in the
+OpenID URL. Here are the ones that 
+
+http://openid.aol.com/:username
+* http://:username.myopenid.com
+* http://:username.livejournal.com
+* http://flickr.com/photos/:username
+* http://technorati.com/people/technorati/:username
+* http://:username.wordpress.com
+* http://:username.blogspot.com
+* http://:username.pip.verisignlabs.com
+* http://:username.myvidoop.com
+* http://:username.pip.verisignlabs.com
+* http://claimid.com/:username
+
+h2. Example
+
+ adam:openid_providers adam$ irb
+ >> require "openid_providers"
+ => true
+ >> OpenidProviders.extract_username("http://adam.blogspot.com")
+ => "adam"
+ >> OpenidProviders.extract_username("http://claimid.com/adamfortuna")
+ => "adamfortuna"
